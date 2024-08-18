@@ -31,7 +31,8 @@ jobs:
         source venv/bin/activate
         pa_username="ajay04"
         project_name="survey"
-
+        echo "API Token: ${PA_API_TOKEN}"
+        echo "https://www.pythonanywhere.com/api/v0/user/$pa_username/files/path/home/$pa_username/$project_name/"
         # Upload the code to PythonAnywhere
         tar czf project.tar.gz --exclude='.venv' --exclude='.git' --exclude='.github' *
         curl -F "file=@project.tar.gz" https://www.pythonanywhere.com/api/v0/user/$pa_username/files/path/home/$pa_username/$project_name/project.tar.gz?api_token=$PA_API_TOKEN
