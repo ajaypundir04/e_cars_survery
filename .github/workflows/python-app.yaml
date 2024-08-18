@@ -1,0 +1,41 @@
+name: Deploy to PythonAnywhere
+
+on:
+  push:
+    branches:
+      - main  # Deploy when changes are pushed to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'  # Ensure this matches your Python version
+
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+
+    - name: Deploy to PythonAnywhere
+      env:
+        PA_API_TOKEN: ${{ secrets.PA_API_TOKEN }}  # Use PythonAnywhere API token
+      run: |
+        source venv/bin/activate
+        pa_username="your_pythonanywhere_username"
+        project_name="your_project_name"
+
+        # Upload the code to PythonAnywhere
+        tar czf project.tar.gz --exclude='.venv' --exclude='.git' --exclude='.github' *
+        curl -F "file=@project.tar.gz" https://www.pythonanywhere.com/api/v0/user/$pa_username/files/path/home/$pa_username/$project_name/project.tar.gz?api_token=$PA_API_TOKEN
+        curl -X POST https://www.pythonanywhere.com/api/v0/user/$pa_username/files/path/home/$pa_username/$project_name/ --data "path=/home/$pa_username/$project_name/&format=json&extract=true&remove_source=true&api_token=$PA_API_TOKEN"
+
+        # Trigger a reload of your web app on PythonAnywhere
+        curl -X POST https://www.pythonanywhere.com/api/v0/user/$pa_username/webapps/$pa_username.pythonanywhere.com/reload/ --data "" --header "Authorization: Token $PA_API_TOKEN"
