@@ -29,8 +29,8 @@ jobs:
         PA_API_TOKEN: ${{ secrets.PA_API_TOKEN }}  # Use PythonAnywhere API token
       run: |
         source venv/bin/activate
-        pa_username="your_pythonanywhere_username"
-        project_name="your_project_name"
+        pa_username="ajay04"
+        project_name="survey"
 
         # Upload the code to PythonAnywhere
         tar czf project.tar.gz --exclude='.venv' --exclude='.git' --exclude='.github' *
