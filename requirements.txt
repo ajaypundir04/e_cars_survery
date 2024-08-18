@@ -1,0 +1,8 @@
+# Flask for handling the web application
+Flask==3.0.3
+
+# pyliquibase for Liquibase integration
+pyliquibase==2.3.0
+
+# MySQL Connector (if using MySQL, change to the appropriate connector if using a different DB)
+mysql-connector-python==8.0.26
