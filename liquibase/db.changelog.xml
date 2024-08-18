@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="your_name">
+        <createTable tableName="survey_responses">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="question1" type="VARCHAR(255)"/>
+            <column name="question2" type="VARCHAR(255)"/>
+            <column name="question3" type="VARCHAR(255)"/>
+            <column name="question4" type="VARCHAR(255)"/>
+            <column name="question5" type="VARCHAR(255)"/>
+            <column name="question6" type="VARCHAR(255)"/>
+            <column name="question7" type="TEXT"/>
+            <column name="question8" type="TEXT"/>
+            <column name="question9" type="VARCHAR(255)"/>
+            <column name="question10" type="VARCHAR(255)"/>
+            <column name="question11" type="VARCHAR(255)"/>
+            <column name="question12" type="VARCHAR(255)"/>
+            <column name="question12_other" type="TEXT"/>
+            <column name="question13" type="VARCHAR(255)"/>
+            <column name="question14" type="VARCHAR(255)"/>
+            <column name="question15" type="VARCHAR(255)"/>
+            <column name="question16" type="VARCHAR(255)"/>
+            <column name="question17" type="VARCHAR(255)"/>
+            <column name="question18" type="VARCHAR(255)"/>
+            <column name="question19" type="VARCHAR(255)"/>
+            <column name="question20" type="VARCHAR(255)"/>
+            <column name="question21" type="VARCHAR(255)"/>
+            <column name="question22" type="VARCHAR(255)"/>
+            <column name="question23" type="VARCHAR(255)"/>
+            <column name="question24" type="VARCHAR(255)"/>
+            <column name="question25" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
