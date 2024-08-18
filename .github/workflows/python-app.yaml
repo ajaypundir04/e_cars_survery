@@ -39,17 +39,19 @@ jobs:
         # Create a tar.gz file excluding unnecessary directories
         tar czf project.tar.gz --exclude='venv' --exclude='.git' --exclude='.github' *
 
-        # Upload the tar.gz file to PythonAnywhere
+        # Upload the tar.gz file to PythonAnywhere with the token in the header
         curl -F "file=@project.tar.gz" \
-            "https://www.pythonanywhere.com/api/v0/user/$pa_username/files/path/home/$pa_username/$project_name/project.tar.gz?api_token=$PA_API_TOKEN"
+            -H "Authorization: Token $PA_API_TOKEN" \
+            "https://www.pythonanywhere.com/api/v0/user/$pa_username/files/path/home/$pa_username/$project_name/project.tar.gz"
 
-        # Extract the tar.gz file on PythonAnywhere
+        # Extract the tar.gz file on PythonAnywhere with the token in the header
         curl -X POST \
+            -H "Authorization: Token $PA_API_TOKEN" \
             "https://www.pythonanywhere.com/api/v0/user/$pa_username/files/path/home/$pa_username/$project_name/" \
-            --data "path=/home/$pa_username/$project_name/&format=json&extract=true&remove_source=true&api_token=$PA_API_TOKEN"
+            --data "path=/home/$pa_username/$project_name/&format=json&extract=true&remove_source=true"
 
-        # Trigger a reload of your web app on PythonAnywhere
+        # Trigger a reload of your web app on PythonAnywhere with the token in the header
         curl -X POST \
+            -H "Authorization: Token $PA_API_TOKEN" \
             "https://www.pythonanywhere.com/api/v0/user/$pa_username/webapps/$pa_username.pythonanywhere.com/reload/" \
-            --data "" \
-            --header "Authorization: Token $PA_API_TOKEN"
+            --data ""
